@@ -1,25 +1,13 @@
-<html>
-    <head>
-        <title>Sangenisp blog</title>        
-    </head>
+{% extends 'blog/base.html' %}
 
-    <body>
-        <div>
-            <h1><a href="/">Pablo Alejandro Sangenis - TechBlog -</a></h1>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <p>published: 14/01/2019, 12:14</p>
-            <h2><a href="">Mi primer post</a></h2>
-            <p>Contenido del primer post, desde una plantilla sacado todo esto</p>
-        </div>
-
-        <div>
-            <p>published: 14/01/2019, 12:14</p>
-            <h2><a href="">Mi segundo post</a></h2>
-            <p>Contenido del segundo post, desde una plantilla sacado todo esto</p>
-        </div>
-
-    </body>
-
-</html>
+    {% endfor %}
+{% endblock %}
